@@ -1,6 +1,7 @@
 import json
-
+count = 0
 with open('dump.json', 'r', encoding='utf-8') as file:
+
         flowers = json.load(file)
 
 def save_flowers(flowers, filename="dump.json"):
