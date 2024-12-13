@@ -1,12 +1,12 @@
 import json
+
 count = 0
 with open('dump.json', 'r', encoding='utf-8') as file:
-
-        flowers = json.load(file)
+    flowers = json.load(file)
 
 def save_flowers(flowers, filename="dump.json"):
-    with open(filename, "w") as f:
-        json.dump(flowers, f, indent=4)
+    with open(filename, "w", encoding='utf-8') as f:
+        json.dump(flowers, f, indent=4, ensure_ascii=False)
 
 def print_all_flowers(flowers):
     if not flowers:
@@ -30,20 +30,20 @@ def print_flower_by_id(flowers, flower_id):
             return
     print(f"Запись с ID {flower_id} не найдена.")
 
-
 def add_flower(flowers):
-    flower_id = int(input("Введите ID: "))
+    flower_id = max(flower["id"] for flower in flowers) + 1
     name = input("Введите название: ")
     latin_name = input("Введите латинское название: ")
     is_red_book_flower = input("Является ли цветок краснокнижным? (да/нет): ").lower() == "да"
     price = float(input("Введите цену: "))
-    flowers.append({"id": flower_id, 
-                    "name": name, 
-                    "latin_name": latin_name, 
-                    "is_red_book_flower": is_red_book_flower, 
-                    "price": price})
+    flowers.append({
+        "id": flower_id,
+        "name": name,
+        "latin_name": latin_name,
+        "is_red_book_flower": is_red_book_flower,
+        "price": price
+    })
     print("Запись добавлена.")
-
 
 def delete_flower_by_id(flowers, flower_id):
     for i, flower in enumerate(flowers):
@@ -52,7 +52,6 @@ def delete_flower_by_id(flowers, flower_id):
             print(f"Запись с ID {flower_id} удалена.")
             return
     print(f"Запись с ID {flower_id} не найдена.")
-
 
 def main():
     count = 0
