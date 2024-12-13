@@ -1,8 +1,7 @@
 import json
 
 count = 0
-with open('dump.json', 'r', encoding='utf-8') as file:
-    flowers = json.load(file)
+
 
 def save_flowers(flowers, filename="dump.json"):
     with open(filename, "w", encoding='utf-8') as f:
@@ -80,6 +79,8 @@ def delete_flower_by_id(flowers, flower_id):
     print(f"Запись с ID {flower_id} не найдена.")
 
 def main():
+    with open('dump.json', 'r', encoding='utf-8') as file:
+        flowers = json.load(file)
     count = 0
     while True:
         print("\nМеню:")
@@ -108,4 +109,5 @@ def main():
         save_flowers(flowers)
 
 main()
+
 
