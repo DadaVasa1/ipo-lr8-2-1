@@ -32,10 +32,36 @@ def print_flower_by_id(flowers, flower_id):
 
 def add_flower(flowers):
     flower_id = max(flower["id"] for flower in flowers) + 1
-    name = input("Введите название: ")
-    latin_name = input("Введите латинское название: ")
-    is_red_book_flower = input("Является ли цветок краснокнижным? (да/нет): ").lower() == "да"
-    price = float(input("Введите цену: "))
+
+    while True:
+            name = input("Введите названия цветка ")
+            if name != "":
+                break
+            else:
+                print("Вы не ввели")
+
+    while True:
+        latin_name = input("Введите латинское имя цветка ")
+        if latin_name != "":
+            break
+        else:
+            print("Вы не ввели")
+
+    while True:
+        is_red_book_flower = input("Введите краснокнижный ли цветок True/False ")
+        if is_red_book_flower.lower() in ["true", "false"]:
+            is_red_book_flower = is_red_book_flower.lower() == "true"
+            break
+        else:
+            print("Некорректный ввод")
+
+    while True: 
+        try: 
+            price = float(input("Введите цену цветка ")) 
+            break 
+        except ValueError: 
+            print("Некорректный ввод") 
+
     flowers.append({
         "id": flower_id,
         "name": name,
@@ -82,3 +108,4 @@ def main():
         save_flowers(flowers)
 
 main()
+
